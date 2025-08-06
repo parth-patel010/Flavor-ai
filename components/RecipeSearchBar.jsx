@@ -103,7 +103,7 @@ const RecipeSearchBar = ({
   return (
     <div id="searchBar" className="flex flex-col relative">
       {!isSearchOpen ? (
-        <button 
+        <button
           onClick={() => setIsSearchOpen(true)}
           className="flex items-center gap-2 text-base-content hover:text-primary transition-colors duration-200 px-3 py-2 rounded-lg border border-base-300 hover:border-primary bg-base-100 hover:bg-base-200"
         >
@@ -139,15 +139,16 @@ const RecipeSearchBar = ({
       {showResults && input && isSearchOpen && (
         <div
           ref={resultsRef}
-          className="w-80 max-h-80 overflow-y-scroll no-scrollbar bg-purple-900 p-2 rounded-xl flex flex-col gap-2 absolute top-12 md:top-20 md:right-0 z-10"
+          className="w-80 max-h-80 overflow-y-scroll no-scrollbar p-2 rounded-xl flex flex-col gap-2 absolute top-12 md:top-20 md:right-0 z-10 custom-dropdown-bg"
+          style={{ backgroundColor: 'rgb(255,192,203)' }}
         >
           {input &&
             meals &&
             meals.map((meal, index) => (
               <Link key={meal.idMeal} href={`/meal/${meal.idMeal}`}>
                 <div
-                  className={`${index === activeIndex ? "bg-purple-800" : ""
-                    } p-1 rounded-xl flex items-center justify-start gap-3 text-white hover:bg-purple-800 transition-colors duration-200`}
+                  className={`${index === activeIndex ? "rgb(255,192,203)" : ""
+                    } p-1 rounded-xl flex items-center justify-start gap-3 text-white hover:bg-pink-400 transition-colors duration-200`}
                   onMouseEnter={() => setActiveIndex(index)}
                   onMouseDown={(e) => {
                     e.preventDefault();
