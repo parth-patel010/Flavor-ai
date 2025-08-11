@@ -58,9 +58,8 @@ export default function Navbar({
 
   return (
     <div
-      className={`navbar fixed top-0 left-0 right-0 z-50 shadow-md flex flex-wrap items-center justify-between gap-y-2 px-4 py-2 md:py-3 transition-all duration-300 ${
-        isScrolled ? "bg-base-200/80 backdrop-blur-md" : "bg-base-100/90"
-      }`}
+      className={`navbar fixed top-0 left-0 right-0 z-50 shadow-md flex flex-wrap items-center justify-between gap-y-2 px-4 py-2 md:py-3 transition-all duration-300 ${isScrolled ? "bg-base-200/80 backdrop-blur-md" : "bg-base-100/90"
+        }`}
     >
       {/* Left - Logo + GitHub */}
       <div className="flex items-center gap-3 flex-wrap">
@@ -68,11 +67,10 @@ export default function Navbar({
           href="#"
           id="main"
           className={`text-sm md:text-base font-bold px-3.5 py-1.5 rounded-full transition-all duration-300 backdrop-blur-md
-          ${
-            currentTheme === "dark"
+          ${currentTheme === "dark"
               ? "bg-gradient-to-br from-pink-700 via-purple-800 to-pink-700 text-white hover:shadow-lg"
               : "bg-gradient-to-br from-pink-200 via-purple-300 to-pink-200 text-gray-900 hover:shadow-md"
-          } hover:scale-[1.02] border border-white/10`}
+            } hover:scale-[1.02] border border-white/10`}
         >
           Flavor AI
         </Link>
@@ -82,11 +80,10 @@ export default function Navbar({
           target="_blank"
           rel="noopener noreferrer"
           className={`group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm md:text-base font-medium transition-all duration-300 backdrop-blur-md border hover:scale-[1.02] 
-          ${
-            currentTheme === "dark"
+          ${currentTheme === "dark"
               ? "bg-gradient-to-br from-base-100 via-base-300 to-base-200 text-white shadow-md hover:shadow-lg border-white/10"
               : "bg-gradient-to-br from-base-200 via-base-100 to-base-300 text-gray-900 shadow-md hover:shadow-lg border-white/10"
-          }`}
+            }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -122,8 +119,17 @@ export default function Navbar({
         />
       </div>
 
-      {/* Right - Theme Toggle */}
-      <div className="ml-auto md:ml-0">
+      {/* Right - Navigation Links + Theme Toggle */}
+      <div className="flex items-center gap-3 ml-auto md:ml-0">
+        <Link
+          href="/cost-calculator"
+          className="btn btn-sm btn-outline btn-primary hidden md:flex"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+          Cost Calculator
+        </Link>
         <ThemeToggle />
       </div>
 

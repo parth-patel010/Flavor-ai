@@ -5,7 +5,7 @@
 /* ===== Text-to-Speech Highlighting Style ===== */
 body {
   @apply bg-gradient-to-br from-indigo-50 to-blue-100;
-   top: 0 !important;
+  top: 0 !important;
 }
 
 /* By Devika Harshey */
@@ -16,7 +16,8 @@ body::-webkit-scrollbar {
 
 /* This single, powerful class is used to highlight the exact word being spoken. */
 .speaking-word {
-  background-color: #fef08a; /* A bright, distinct yellow */
+  background-color: #fef08a;
+  /* A bright, distinct yellow */
   color: #1f2937;
   border-radius: 0.25rem;
   padding: 0.1rem 0.2rem;
@@ -43,17 +44,22 @@ html {
   width: 5px;
   height: 5px;
 }
+
 ::-webkit-scrollbar-track {
   background-color: var(--background-color);
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: purple;
   border-radius: 20px;
 }
+
 *::selection {
   color: rgb(255, 255, 255);
-  background-color:purple;
+  background-color: purple;
 }
+
+
 
 /* Google Translate Styles */
 .google-translate-container {
@@ -62,15 +68,18 @@ html {
   left: 20px;
   z-index: 10000;
 }
+
 .goog-logo-link,
 .goog-te-banner-frame,
 .VIpgJd-ZVi9od-l4eHX-hSRGPd,
 .VIpgJd-ZVi9od-ORHb-OEVmcd {
   display: none !important;
 }
+
 .goog-te-gadget {
   color: transparent !important;
 }
+
 .goog-te-gadget .goog-te-combo {
   background-color: purple !important;
   color: white !important;
@@ -79,17 +88,21 @@ html {
   border-radius: 5px;
   padding: 4px;
 }
+
 .goog-te-gadget .goog-te-combo option {
   color: white;
 }
+
 #goog-gt-tt,
 .goog-te-balloon-frame {
   display: none !important;
 }
+
 .goog-text-highlight {
   background: none !important;
   box-shadow: none !important;
 }
+
 .google-translate-container.hidden {
   display: none !important;
 }
