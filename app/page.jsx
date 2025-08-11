@@ -186,6 +186,46 @@ export default function Page() {
 
         <div className="divider mt-10"></div>
 
+        {/* AI Recommendations Preview Section */}
+        <section className="recommendations-preview flex flex-col items-center justify-center p-5 md:p-10 w-full bg-gradient-to-br from-purple-50 to-pink-100 dark:from-purple-900/30 dark:to-pink-800/20 rounded-lg shadow-lg">
+          <h1 className={`text-xl md:text-3xl mb-6 font-semibold text-center ${currentTheme === 'dark' ? 'text-white' : 'text-purple-800'}`}>
+            🤖 AI-Powered Recipe Recommendations
+          </h1>
+          <p className={`text-center mb-8 max-w-2xl ${currentTheme === 'dark' ? 'text-gray-300' : 'text-purple-700'}`}>
+            Discover your next favorite recipe with our intelligent AI recommendation engine.
+            Personalized just for you based on your preferences and cooking history.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-4xl">
+            <div className="text-center p-4">
+              <div className="text-3xl mb-2">🎯</div>
+              <h3 className="font-semibold mb-2">Personalized Matching</h3>
+              <p className="text-sm">Our AI learns your preferences and suggests recipes that match your taste</p>
+            </div>
+            <div className="text-center p-4">
+              <div className="text-3xl mb-2">🥘</div>
+              <h3 className="font-semibold mb-2">Ingredient-Based</h3>
+              <p className="text-sm">Find recipes based on ingredients you have available</p>
+            </div>
+            <div className="text-center p-4">
+              <div className="text-3xl mb-2">🔥</div>
+              <h3 className="font-semibold mb-2">Trending Recipes</h3>
+              <p className="text-sm">Discover what's popular in the cooking community</p>
+            </div>
+          </div>
+
+          <Link href="/recommendations">
+            <button className="btn btn-primary btn-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+              Explore AI Recommendations
+            </button>
+          </Link>
+        </section>
+
+        <div className="divider mt-10"></div>
+
         {/* Categories section */}
         {showCategories && (
           <section className="categories-section flex flex-col items-center justify-center p-5 md:p-10 w-full bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/30 dark:to-amber-800/20 rounded-lg shadow-lg">
