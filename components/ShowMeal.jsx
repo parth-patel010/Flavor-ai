@@ -46,8 +46,32 @@ function IngredientsTable({ mealData }) {
         .filter(Boolean),
     [mealData]
   );
+
+  const allergenKeywords = [
+    "milk", "cheese", "butter", "cream", "egg", "peanut", "almond", "cashew", "walnut", "pecan", "hazelnut", "wheat", "barley", "rye", "soy", "soybean", "shrimp", "prawn", "crab", "lobster", "clam", "mussel", "oyster", "fish"
+  ];
+
+  const detectedAllergens = useMemo(() => {
+    if (!mealData) return [];
+    const ingredientNames = Object.keys(mealData)
+      .filter(k => k.startsWith("strIngredient") && mealData[k])
+      .map(k => mealData[k].toLowerCase());
+
+    return allergenKeywords.filter(allergen =>
+      ingredientNames.some(ing => ing.includes(allergen))
+    );
+  }, [mealData]);
+
   return (
     <div className="overflow-x-auto mt-2">
+      {detectedAllergens.length > 0 && (
+        <div className="mb-4 p-3 bg-warning/20 border border-warning rounded-lg">
+          <h4 className="font-semibold text-warning mb-2">⚠️ Allergen Alert</h4>
+          <p className="text-sm text-warning-content">
+            This recipe contains: <strong>{detectedAllergens.join(", ")}</strong>
+          </p>
+        </div>
+      )}
       <table className="table w-full">
         <thead>
           <tr className="text-left">
@@ -92,23 +116,7 @@ function ShowMeal({ URL }) {
       .filter(Boolean);
   }, [mealData]);
 
-  const ingredients = useMemo(
-    () =>
-      Object.keys(mealData || {})
-        .map((key) => {
-          if (key.startsWith("strIngredient") && mealData[key]) {
-            const num = key.slice(13);
-            if (mealData[`strMeasure${num}`])
-              return {
-                measure: mealData[`strMeasure${num}`],
-                name: mealData[key],
-              };
-          }
-          return null;
-        })
-        .filter(Boolean),
-    [mealData]
-  );
+  // Remove duplicate ingredients useMemo - it's now handled in IngredientsTable component
 
   useEffect(() => {
     const synth = window.speechSynthesis;
@@ -302,7 +310,12 @@ function ShowMeal({ URL }) {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-primary">
-                      {ingredients.length}
+                      {(() => {
+                        const ingredientCount = Object.keys(mealData || {})
+                          .filter(key => key.startsWith("strIngredient") && mealData[key])
+                          .length;
+                        return ingredientCount;
+                      })()}
                     </div>
                     <div className="text-sm text-base-content/70">Ingredients</div>
                   </div>
@@ -324,18 +337,36 @@ function ShowMeal({ URL }) {
                 <div className="mb-6">
                   <h3 className="text-lg font-semibold mb-3 text-base-content">Ingredients & Estimated Costs</h3>
                   <div className="space-y-2 max-h-60 overflow-y-auto">
-                    {ingredients.map((ingredient, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-base-200 rounded-lg">
-                        <div className="flex-1">
-                          <span className="font-medium text-base-content">{ingredient.name}</span>
-                          <span className="text-base-content/70 ml-2">({ingredient.measure})</span>
+                    {(() => {
+                      const ingredients = Object.keys(mealData || {})
+                        .map((key) => {
+                          if (key.startsWith("strIngredient") && mealData[key]) {
+                            const num = key.slice(13);
+                            if (mealData[`strMeasure${num}`])
+                              return {
+                                measure: mealData[`strMeasure${num}`],
+                                name: mealData[key],
+                              };
+                          }
+                          return null;
+                        })
+                        .filter(Boolean);
+                      
+                      return ingredients.map((ingredient, index) => (
+                        <div key={index} className="flex items-center justify-between p-3 bg-base-200 rounded-lg">
+                          <div className="flex-1">
+                            <span className="font-medium text-base-content">
+                              {ingredient.name}
+                            </span>
+                            <span className="text-base-content/70 ml-2">({ingredient.measure})</span>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-sm text-base-content/70">Est. Cost:</div>
+                            <div className="font-bold text-primary">$2.99</div>
+                          </div>
                         </div>
-                        <div className="text-right">
-                          <div className="text-sm text-base-content/70">Est. Cost:</div>
-                          <div className="font-bold text-primary">$2.99</div>
-                        </div>
-                      </div>
-                    ))}
+                      ));
+                    })()}
                   </div>
                 </div>
 
@@ -344,7 +375,12 @@ function ShowMeal({ URL }) {
                   <div className="flex items-center justify-between">
                     <span className="text-lg font-semibold text-base-content">Total Estimated Cost:</span>
                     <span className="text-2xl font-bold text-primary">
-                      ${(ingredients.length * 2.99).toFixed(2)}
+                      ${(() => {
+                        const ingredientCount = Object.keys(mealData || {})
+                          .filter(key => key.startsWith("strIngredient") && mealData[key])
+                          .length;
+                        return (ingredientCount * 2.99).toFixed(2);
+                      })()}
                     </span>
                   </div>
                   <p className="text-sm text-base-content/70 mt-2">
@@ -356,7 +392,12 @@ function ShowMeal({ URL }) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <div className="bg-success/10 rounded-lg p-4 text-center">
                     <div className="text-2xl font-bold text-success">
-                      ${(ingredients.length * 2.99).toFixed(2)}
+                      ${(() => {
+                        const ingredientCount = Object.keys(mealData || {})
+                          .filter(key => key.startsWith("strIngredient") && mealData[key])
+                          .length;
+                        return (ingredientCount * 2.99).toFixed(2);
+                      })()}
                     </div>
                     <div className="text-sm text-success/70">Cost to Cook at Home</div>
                   </div>
@@ -370,7 +411,12 @@ function ShowMeal({ URL }) {
                 <div className="text-center">
                   <div className="text-lg font-semibold text-base-content mb-2">
                     💰 You Save: <span className="text-success font-bold">
-                      ${(25 - (ingredients.length * 2.99)).toFixed(2)}
+                      ${(() => {
+                        const ingredientCount = Object.keys(mealData || {})
+                          .filter(key => key.startsWith("strIngredient") && mealData[key])
+                          .length;
+                        return (25 - (ingredientCount * 2.99)).toFixed(2);
+                      })()}
                     </span>
                   </div>
                   <p className="text-sm text-base-content/70">
