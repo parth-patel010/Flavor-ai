@@ -6,6 +6,7 @@ import { PlayIcon, PauseIcon, ArrowPathIcon } from '@heroicons/react/24/solid';
 import Link from "next/link";
 import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import Footer from "./Footer";
+import Navbar from "@/components/Navbar";
 
 // --- Self-contained helper components ---
 
@@ -209,7 +210,8 @@ function ShowMeal({ URL }) {
 
   return (
     <>
-      <div className="min-h-screen py-10 px-4 bg-base-100 flex justify-center items-start">
+      <Navbar />
+      <div className="min-h-screen py-10 px-4 mt-20 bg-base-100 flex justify-center items-start">
         <BackButton />
         <div className="relative max-w-4xl w-full bg-base-200 shadow-xl rounded-xl">
           <div className="p-6 md:p-12">
