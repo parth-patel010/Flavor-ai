@@ -116,7 +116,7 @@ function ShowMeal({ URL }) {
       .filter(Boolean);
   }, [mealData]);
 
-  // Remove duplicate ingredients useMemo - it's now handled in IngredientsTable component
+  // Remove duplicat ingredients useMemo - it's now handled in IngredientsTable component
 
   useEffect(() => {
     const synth = window.speechSynthesis;
