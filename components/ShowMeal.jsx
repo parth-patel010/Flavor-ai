@@ -211,6 +211,7 @@ function ShowMeal({ URL }) {
   return (
     <>
       <Navbar />
+      {/* THIS IS THE LINE THAT WAS CHANGED --- */}
       <div className="min-h-screen py-10 px-4 mt-20 bg-base-100 flex justify-center items-start">
         <BackButton />
         <div className="relative max-w-4xl w-full bg-base-200 shadow-xl rounded-xl">
@@ -353,7 +354,7 @@ function ShowMeal({ URL }) {
                           return null;
                         })
                         .filter(Boolean);
-                      
+
                       return ingredients.map((ingredient, index) => (
                         <div key={index} className="flex items-center justify-between p-3 bg-base-200 rounded-lg">
                           <div className="flex-1">
